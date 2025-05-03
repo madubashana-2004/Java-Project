@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: authzen
+  datasource:
+    url: jdbc:mysql://localhost:3306/authzen?createDatabaseIfNotExist=true
+    username: root
+    password: yourpassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: youremail@gmail.com
+    password: yourapppassword
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  oauth2:
+    client:
+      registration:
+        github:
+          client-id: Ov23lieAsQAoQstrXknS
+          client-secret: 7b64eaf8119a104dba1c927ef825b775a5a1766b
+          scope: user:email
+          redirect-uri: http://localhost:8080/auth/oauth
+          authorization-grant-type: authorization_code
+      provider:
+        github:
+          authorization-uri: https://github.com/login/oauth/authorize
+          token-uri: https://github.com/login/oauth/access_token
+          user-info-uri: https://api.github.com/user
+          user-name-attribute: login
+
+jwt:
+  secret: your_secret_key
+  access-token-expiry: 900000
+  refresh-token-expiry: 604800000
+  issuer: authzen
+  audience: authzen
+
+server:
+  port: 8080
